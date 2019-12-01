@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   sensor_msgs
+  cloudwatch_logger
 )
 find_package(Qt4 REQUIRED)
 include(${QT_USE_FILE})
@@ -39,6 +40,7 @@ catkin_package(
     rospy
     std_msgs
     sensor_msgs
+    cloudwatch_logger
 )
 
 ################################################################################

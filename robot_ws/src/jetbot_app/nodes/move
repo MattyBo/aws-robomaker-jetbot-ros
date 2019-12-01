@@ -15,6 +15,7 @@ from geometry_msgs.msg import Twist
 class Move():
 	
 	def __init__(self):
+		rospy.loginfo("Setup Move...")
 		# setup motor controller
 		if rospy.get_param("motor_controller").lower() == 'adafruit':
 			self.motor_driver = Adafruit_MotorHAT(i2c_bus=int(rospy.get_param("i2c_bus")))
@@ -26,6 +27,7 @@ class Move():
 		elif rospy.get_param("motor_controller").lower() == 'qwiic':
 			self.motor_driver = qwiic_scmd.QwiicScmd()
 			self.motor_driver.disable()
+		rospy.loginfo("Setup Move Complete")
 
 	def set_speed(self, motor_ID, value):
 		max_pwm = float(rospy.get_param("max_pwm"))
@@ -137,5 +139,6 @@ if __name__ == '__main__':
 	try:
 		move.start()
 	finally:
+		rospy.logerror("move node failed")
 		# stop motors before exiting
 		move.all_stop()

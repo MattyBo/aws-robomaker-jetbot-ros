@@ -2,9 +2,21 @@
   
   <param name="motor_controller" value="$(optenv MOTOR_CONTROLLER adafruit)" />
   <param name="i2c_bus" type="int" value="$(optenv I2C_BUS 1)" />
-  <param name="max_pwm" type="float" value="$(optenv MAX_PWM 115.0)" />
+  <param name="max_pwm" value="$(optenv MAX_PWM 115.0)" />
   
-  <node name="move" pkg="jetbot_app" type="move" output="stdout" />
-  <node name="circle" pkg="jetbot_app" type="circle" output="stdout" />
+  <node name="move" pkg="jetbot_app" type="move" output="log" />
+  <node name="circle" pkg="jetbot_app" type="circle" output="log" />
+  
+  <!-- Setup CloudWatch logger -->
+  <arg name="aws_region" default="us-east-1" />
+  <arg name="output" default="log" />
+  <arg name="log_name" default="circle-bot" />
+
+  <include file="$(find jetbot_app)/launch/aws_cloudwatch_logger.launch">
+    <arg name="config_file" value="$(find jetbot_app)/config/aws_cloudwatch_logs_config.yml" />
+    <arg name="output" value="$(arg output)" />
+    <arg name="aws_region" value="$(arg aws_region)" />
+    <arg name="log_stream_name" value="$(arg log_name)" />
+  </include>
   
 </launch>

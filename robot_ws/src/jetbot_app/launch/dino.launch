@@ -25,4 +25,16 @@
   <node name="camera" pkg="jetbot_app" type="camera" output="stdout" />
   <node name="detect" pkg="jetbot_app" type="detect" output="stdout" />
   
+  <!-- Setup CloudWatch logger -->
+  <arg name="aws_region" default="us-east-1" />
+  <arg name="output" default="log" />
+  <arg name="log_name" default="detect-bot" />
+
+  <include file="$(find jetbot_appex)/launch/aws_cloudwatch_logger.launch">
+    <arg name="config_file" value="$(find jetbot_app)/config/aws_cloudwatch_logs_config.yml" />
+    <arg name="output" value="$(arg output)" />
+    <arg name="aws_region" value="$(arg aws_region)" />
+    <arg name="log_stream_name" value="$(arg log_name)" />
+  </include>
+  
 </launch>

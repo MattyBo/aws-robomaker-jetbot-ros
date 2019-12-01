@@ -23,36 +23,36 @@
       "name": "JetBot Circle Simulation",
       "type": "simulation",
       "cfg": {
-          "simulationApp": {
-            "name": "jetbotCircleSimulation",
-            "sourceBundleFile": "./jetbot/simulation_ws/bundle/output.tar",
-            "architecture": "X86_64",
-            "s3Bucket": "<S3 Bucketname for bundle ie. my-s3-bucketname>",
-            "launchConfig": {
-              "packageName": "jetbot_sim_app",
-              "launchFile": "circle.launch",
-              "environmentVariables": {}
-            },
-            "simulationSoftwareSuite": {
-              "name": "Gazebo",
-              "version": "9"
-            },
-            "renderingEngine": {
-              "name": "OGRE",
-              "version": "1.x"
-            },
-            "robotSoftwareSuite": {
-              "name": "ROS",
-              "version": "Melodic"
-            }
+        "simulationApp": {
+          "name": "jetbotCircleSimulation",
+          "sourceBundleFile": "./jetbot/simulation_ws/bundle/output.tar",
+          "architecture": "X86_64",
+          "s3Bucket": "mattbol-jetbot",
+          "launchConfig": {
+            "packageName": "jetbot_sim_app",
+            "launchFile": "circle.launch",
+            "environmentVariables": {}
           },
-          "simulation": {
-            "maxJobDurationInSeconds": 28800,
-            "failureBehavior": "Fail",
-            "iamRole": "<IAM Role ARN for Robomake ie. arn:aws:iam::123456789012:role/your-role-name>",
-            "outputLocation": "<S3 Bucketname for bundle ie. my-s3-bucketname>",
-            "tags": {}
+          "simulationSoftwareSuite": {
+            "name": "Gazebo",
+            "version": "9"
+          },
+          "renderingEngine": {
+            "name": "OGRE",
+            "version": "1.x"
+          },
+          "robotSoftwareSuite": {
+            "name": "ROS",
+            "version": "Melodic"
           }
+        },
+        "simulation": {
+          "maxJobDurationInSeconds": 28800,
+          "failureBehavior": "Fail",
+          "iamRole": "arn:aws:iam::881324993730:role/RoboMaker-Simulation-Role",
+          "outputLocation": "mattbol-jetbot",
+          "tags": {}
+        }
       }
     },
     {
@@ -60,48 +60,48 @@
       "name": "JetBot Teleop Simulation",
       "type": "simulation",
       "cfg": {
-          "simulationApp": {
-            "name": "jetbotTeleopSimulation",
-            "sourceBundleFile": "./jetbot/simulation_ws/bundle/output.tar",
-            "architecture": "X86_64",
-            "s3Bucket": "<S3 Bucketname for bundle ie. my-s3-bucketname>",
-            "launchConfig": {
-              "packageName": "jetbot_sim_app",
-              "launchFile": "teleop.launch",
-              "environmentVariables": {
-                "IOT_ENDPOINT": "<Your IOT MQTT Endpoint>"
-              }
-            },
-            "simulationSoftwareSuite": {
-              "name": "Gazebo",
-              "version": "9"
-            },
-            "renderingEngine": {
-              "name": "OGRE",
-              "version": "1.x"
-            },
-            "robotSoftwareSuite": {
-              "name": "ROS",
-              "version": "Melodic"
+        "simulationApp": {
+          "name": "jetbotTeleopSimulation",
+          "sourceBundleFile": "./jetbot/simulation_ws/bundle/output.tar",
+          "architecture": "X86_64",
+          "s3Bucket": "mattbol",
+          "launchConfig": {
+            "packageName": "jetbot_sim_app",
+            "launchFile": "teleop.launch",
+            "environmentVariables": {
+              "IOT_ENDPOINT": "ae0yha3zng30j-ats.iot.us-east-1.amazonaws.com"
             }
           },
-          "simulation": {
-            "maxJobDurationInSeconds": 28800,
-            "failureBehavior": "Fail",
-            "iamRole": "<IAM Role ARN for Robomake ie. arn:aws:iam::123456789012:role/your-role-name>",
-            "outputLocation": "<S3 Bucketname for bundle ie. my-s3-bucketname>",
-            "vpcConfig": {
-              "subnets": [
-                "<Public subnet id 1 ie. subnet-123456>",
-                "<Public subnet id 2 ie. subnet-789012>"
-              ],
-              "securityGroups": [
-                "<Security Group ID ie. sg-123456>"
-              ],
-              "assignPublicIp": true
-            },
-            "tags": {}
+          "simulationSoftwareSuite": {
+            "name": "Gazebo",
+            "version": "9"
+          },
+          "renderingEngine": {
+            "name": "OGRE",
+            "version": "1.x"
+          },
+          "robotSoftwareSuite": {
+            "name": "ROS",
+            "version": "Melodic"
           }
+        },
+        "simulation": {
+          "maxJobDurationInSeconds": 28800,
+          "failureBehavior": "Fail",
+          "iamRole": "arn:aws:iam::881324993730:role/RoboMaker-Simulation-Role",
+          "outputLocation": "mattbol-jetbot",
+          "vpcConfig": {
+            "subnets": [
+              "subnet-0dccc951",
+              "subnet-d2afe3ec"
+            ],
+            "securityGroups": [
+              "sg-48fea01b"
+            ],
+            "assignPublicIp": true
+          },
+          "tags": {}
+        }
       }
     },
     {
@@ -115,4 +115,3 @@
     }
   ]
 }
-

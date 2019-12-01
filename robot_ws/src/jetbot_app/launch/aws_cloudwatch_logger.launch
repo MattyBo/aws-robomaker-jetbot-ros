@@ -1,0 +1,14 @@
+<launch>
+  <arg name="node_name" default="cloudwatch_logger" />
+  <arg name="config_file" default="" />
+  <arg name="output" default="log" />
+  <arg name="aws_region" default="us-east-1" />
+  <arg name="log_stream_name" default="Default" />
+
+  <node name="$(arg node_name)" pkg="cloudwatch_logger" type="cloudwatch_logger" output="$(arg output)">
+    <rosparam command="delete" param="" />
+    <rosparam if="$(eval config_file!='')" command="load" file="$(arg config_file)" />
+    <rosparam param="aws_client_configuration/region" subst_value="true">$(arg aws_region)</rosparam>
+    <rosparam param="log_stream_name" subst_value="true">$(arg log_stream_name)</rosparam>
+  </node>
+</launch>
